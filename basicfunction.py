@@ -14,3 +14,16 @@ def selectionsort(alist):
 alist = [43,5,65,7,689,78,2,343,878,98]
 selectionsort(alist)
 print(alist)
+
+
+def fibo(n):
+    pre = 1  
+    bac = 1
+    while n > 2: 
+        n = n-1
+        temp = pre
+        pre = pre + bac
+        bac = temp
+    return pre
+
+print (fibo(8))
