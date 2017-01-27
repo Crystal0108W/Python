@@ -1,3 +1,4 @@
+#sort a given list
 def selectionsort(alist):
     a = len(alist)
     while a > 0:
@@ -15,7 +16,7 @@ alist = [43,5,65,7,689,78,2,343,878,98]
 selectionsort(alist)
 print(alist)
 
-
+#find the nth number in a Fibonacci Sequence
 def fibo(n):
     pre = 1  
     bac = 1
