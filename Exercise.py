@@ -140,3 +140,166 @@ print (fat_cat)
 # \uxxxx Character with 16-bit hex value xxxx (Unicode only) \Uxxxxxxxx Character with 32-bit hex value xxxxxxxx (Unicode only) \v ASCII vertical tab (VT)
 # \ooo Character with octal value oo
 # \xhh Character with hex value hh
+
+
+
+
+
+#exercise 8
+
+print ("How old are you?")
+age = raw_input()
+
+print ("How tall are you?")
+height = raw_input()
+
+print ("How much do you weigh?")
+weight = raw_input()
+
+print ("So, you are %s old, %s tall and %s heavy.") %(age, height, weight) #So, you are 12 old, 52 tall and 5 heavy.
+print ("So, you are %s old, %s tall and %s heavy.") %(age, height, weight) #So, you are '12' old, '52' tall and '5' heavy.
+print ("So, you are %s old, %s tall and %s heavy.") %(age, height, weight) #You need to convert age = int(raw_input()) first and the same for weight and height 
+
+
+
+
+#exercise 9
+age = raw_input("How old are you?")
+height = raw_input("How tall are you?")
+weight = raw_input("How much do you weigh?")
+
+print ("So, you are %r old, %r tall and %r heavy.") %(age, height, weight)
+
+
+#exercise 10
+from sys import argv
+script, first, second, third = argv # Can't run the commond without command line arguments
+									# Another form of raw input
+
+
+print ("The script is called: ", script) 
+print ("The first variable is: ", first) 
+print ("Your second variable is: ", second) 
+print ("Your third variable is: ", third)
+
+# lib-pclem012:Desktop yw7986$ Python Exercise10.py apple orange grapefruit
+# ('The script is called: ', 'Exercise10.py')
+# ('The first variable is: ', 'apple')
+# ('Your second variable is: ', 'orange')
+# ('Your third variable is: ', 'grapefruit')
+
+
+#exercise 14
+from sys import argv
+
+script, user_name = argv
+prompt = " "
+
+print ("Hi %s, I'm the %s script.") %(user_name, script)
+print ("I'd like to ask you a few questions.")
+print ("Do you like me %s?") %user_name
+likes = raw_input(prompt)
+
+print ("Where do you live %s?") %user_name
+lives = raw_input(prompt)
+
+print ("What kind of computer do you have?")
+computer = raw_input(prompt)
+
+print ("""
+	Alright, so you said %r about liking me. 
+	You like in %r. Not sure where that is. 
+	And you have a %r computer. Nice.""") % (likes, lives, computer)
+
+
+
+
+#exercise 15
+from sys import argv
+script, filename = argv 
+
+txt = open(filename)
+print ("Here's your file %r: ") %filename
+print (txt.read())
+
+print ("Type the filename again:")
+file_agian = raw_input("> ")
+
+text_again = open(file_agian)
+print (text_again.read())
+
+
+#exercise 16
+from sys import argv 
+
+script, filename = argv 
+
+print ("We are going to erase %r.") % filename
+print ("If you don't want that hit CTRL-C (^C).")
+print ("If you want that, hit RETURN")
+
+
+raw_input("?")
+
+print ("Opening the file...")
+target = open (filename, "W")
+
+print ("Truncating the file. Goodbye!")
+target.truncate()
+
+print ("Now I'm going to ask you for three lines.")
+
+line1 = raw_input("line1: ")
+line2 = raw_input("line2: ")
+line3 + raw_input("line3: ")
+
+print ("I'm going to write these to the file.")
+
+target.write(line1)
+target.write("\n")
+target.write(line2)
+target.write("\n")
+target.write(line3)
+target.write("\n")
+
+print ("And finally, we close it.")
+target.close()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
