@@ -61,7 +61,7 @@ def getLinks(pageUrl):
 	for link in bsObj.findAll("a", href = re.compile("^(/wiki/)")):
 		if 'href' in link.attrs:
 			if link.attrs['href'] not in pages:
-		cs		newPage = link.attrs['href']
+				newPage = link.attrs['href']
 				print ("---------------\n"+newPage)
 				pages.add(newPage)
 				getLinks(newPage)
