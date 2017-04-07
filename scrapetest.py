@@ -38,7 +38,7 @@ print (len(namelist))
 alltext = bsobj1.findAll(id = "text") # a keyword argument
 #print (alltext)
 print (type(alltext[0])) #alltext is <class 'bs4.element.ResultSet'>; alltext[0] is <class 'bs4.element.Tag'>
-print(alltext.get_text())
+#print(alltext.get_text())
 print(alltext[0].get_text)
 # .get_text() will strip all tags from the document and returns a string containing the text only. 
 
@@ -46,18 +46,23 @@ print(alltext[0].get_text)
 html2 = urlopen("http://www.pythonscraping.com/pages/page3.html")
 bsobj2 = BeautifulSoup(html2)
 
-for child in bsobj2.find("table", {"id": "giftList"}).children:
-	print(child)
+#for child in bsobj2.find("table", {"id": "giftList"}).children:
+#	print(child)
 
 # Dealing with Siblings
-for sibling in bsobj2.find("table", {"id": "giftList"}).tr.next_siblings: # or previous_siblings
-	print(sibling)
+#for sibling in bsobj2.find("table", {"id": "giftList"}).tr.next_siblings: # or previous_siblings
+#	print(sibling)
 
 # Dealing with Parents
-print (bsobj2.find("img", {"src": "../img/gifts/img1.jpg"}).parent.previous_sibling.get_text())
+#print (bsobj2.find("img", {"src": "../img/gifts/img1.jpg"}).parent.previous_sibling.get_text())
 
 # Regular Expression
 images = bsobj2.findAll("img", {"src": re.compile("\.\.\/img\/gifts\/img[0-9]\.jpg")})
 for image in images:
 	print(image["src"])
 
+
+
+# Accessing Attributes by calling myTag.attrs
+# Lambda Expressions
+bsobj2.findAll(Lambda tag: len(tag.attrs) == 2)
