@@ -3,22 +3,22 @@ import string
 import sqlite3
 
 # Build connection with db
-conn = sqlite3.connect('D:\sqlite\db\\my_db')
+conn = sqlite3.connect('/Users/yw7986/Desktop/my_db')
 c = conn.cursor()
 
-stats = []
 # generate data
+
 def generator():
 	''' GENERATE DATA '''
-	index = 0
-	while len(stats) < 5000000:
-		# random 8 digits string
-		str = ''.join([random.choice(string.ascii_lowercase) for i in range(8)])
-		t = (index, random.randint(1, 5000000), random.randint(1, 5000000), str)
-		stats.append(t)
-		index +=1
+	ht = [i for i in range(0, 100000)] * 10
+	tt = [i for i in range(0, 10000)]  * 100
+	ot = [i for i in range(0, 1000)]   * 1000
+	str = ''.join([random.choice(string.ascii_lowercase) for i in range(8)])
+	stats = [(i + 1, ht[i], tt[i], ot[i], str) for i in range(0, 1000000)]
+	return stats
 
-generator()
+#stats = generator()
+stats = []
 #print(stats)
 print(len(stats))
 
@@ -29,7 +29,7 @@ c.execute('''CREATE TABLE IF NOT EXISTS A(
 				tt NUMBER,
 				ot NUMBER,
 				filler CHAR(247), 
-			 )''')
+			)''')
 
 c.execute('''CREATE TABLE IF NOT EXISTS B(
 				pk NUMBER PRIMARY KEY,
@@ -52,12 +52,22 @@ c.execute('DELETE FROM A')
 c.execute('VACUUM')
 c.executemany('INSERT INTO A(pk, ht, tt, ot, filler) VALUES (?,?,?,?)', stats)
 
+c.execute('DELETE FROM B')
+c.execute('VACUUM')
+c.executemany('INSERT INTO B(pk, ht, tt, ot, filler) VALUES (?,?,?,?)', stats)
+
+c.execute('DELETE FROM C')
+c.execute('VACUUM')
+c.executemany('INSERT INTO B(pk, ht, tt, ot, filler) VALUES (?,?,?,?)', stats)
+
+
+
 # Shuffle stats
 # Clear previous data; Insert stats into A
-random.shuffle(stats)
-c.execute('DELETE FROM benchmark_rand')
-c.execute('VACUUM')
-c.executemany('INSERT INTO benchmark_rand(theKey, columnA, columnB, filler) VALUES (?,?,?,?)', stats)
+#random.shuffle(stats)
+#c.execute('DELETE FROM benchmark_rand')
+#c.execute('VACUUM')
+#c.executemany('INSERT INTO benchmark_rand(theKey, columnA, columnB, filler) VALUES (?,?,?,?)', stats)
 
 # Save execute and close connection
 conn.commit()
